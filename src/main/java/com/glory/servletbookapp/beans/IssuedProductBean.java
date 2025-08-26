@@ -2,16 +2,16 @@ package com.glory.servletbookapp.beans;
 
 import java.util.Date;
 
-public class IssuedProjectBean {
+public class IssuedProductBean {
     private String bookCode, studentId, studentName;
     private String returnStatus;
     private long studentMobile;
     private Date issuedDate;
 
-    public IssuedProjectBean(){
+    public IssuedProductBean(){
     }
 
-    public IssuedProjectBean(String bookCode, String studentId, String studentName, String returnStatus,
+    public IssuedProductBean(String bookCode, String studentId, String studentName, String returnStatus,
                              long studentMobile, Date issuedDate) {
         this.bookCode = bookCode;
         this.studentId = studentId;

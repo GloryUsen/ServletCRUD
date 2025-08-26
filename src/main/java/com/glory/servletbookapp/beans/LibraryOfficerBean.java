@@ -5,12 +5,12 @@ public class LibraryOfficerBean {
     private String name;
     private String email;
     private String password;
-    private String mobile;
+    private long mobile;
 
     public LibraryOfficerBean(){
     }
 
-    public LibraryOfficerBean(int id, String name, String email, String password, String mobile) {
+    public LibraryOfficerBean(int id, String name, String email, String password, Long mobile) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -50,11 +50,12 @@ public class LibraryOfficerBean {
         this.password = password;
     }
 
-    public String getMobile() {
+    public Long getMobile() {
         return mobile;
+
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(Long mobile) {
         this.mobile = mobile;
     }
 }

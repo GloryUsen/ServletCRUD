@@ -20,7 +20,7 @@ public class LibraryOfficerDao {
             statement.setString(2, officer.getName());
             statement.setString(3, officer.getEmail());
             statement.setString(4, officer.getPassword());
-            statement.setString(5, officer.getMobile());
+            statement.setLong(5, officer.getMobile());
 
             user2 = statement.executeUpdate();
             connected.close();
@@ -32,7 +32,7 @@ public class LibraryOfficerDao {
         return user2;
     }
 
-    private static int update(LibraryOfficerBean lab){
+    private static int updateProduct(LibraryOfficerBean lab){
         int step = 0;
         try {
             Connection connecting = DataBasConnection.getPostgresConnection();
@@ -41,7 +41,7 @@ public class LibraryOfficerDao {
             preparedStatement.setString(1, lab.getName());
             preparedStatement.setString(2, lab.getPassword());
             preparedStatement.setString(3, lab.getEmail());
-            preparedStatement.setString(4, lab.getMobile());
+            preparedStatement.setLong(4, lab.getMobile());
             preparedStatement.setInt(5,lab.getId());
 
 
@@ -53,7 +53,7 @@ public class LibraryOfficerDao {
         return step;
     }
 
-    private static List<LibraryOfficerBean> viewProduct(){
+    private static List<LibraryOfficerBean> viewListOfProduct(){
         List<LibraryOfficerBean> list = new ArrayList<>();
         try {
             Connection conning = DataBasConnection.getPostgresConnection();
@@ -68,7 +68,7 @@ public class LibraryOfficerDao {
                 librarian.setName(setting.getString("name"));
                 librarian.setEmail(setting.getString("email"));
                 librarian.setPassword(setting.getString("password"));
-                librarian.setMobile(setting.getString("mobile"));
+                librarian.setMobile(setting.getLong("mobile"));
 
                 list.add(librarian);
 
@@ -77,5 +77,66 @@ public class LibraryOfficerDao {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    public static LibraryOfficerBean viewProductById(int id){
+        LibraryOfficerBean librarian = new LibraryOfficerBean();
+        try {
+            Connection connecting = DataBasConnection.getPostgresConnection();
+            PreparedStatement preparedStatement = connecting.prepareStatement("select * from product where id =?");
+            preparedStatement.setInt(1, id);
+
+            ResultSet setStatement = preparedStatement.executeQuery();
+            if (setStatement.next()){
+                librarian.setId(setStatement.getInt(1));
+                librarian.setName(setStatement.getString(2));
+                librarian.setEmail(setStatement.getString(3));
+                librarian.setMobile(setStatement.getLong(4));
+                librarian.setPassword(setStatement.getString("password"));
+
+            }
+
+            connecting.close();
+        } catch (Exception viewingProduct) {
+            System.out.println(viewingProduct);
+        }
+
+        return librarian;
+    }
+
+    public static boolean authentication(String email, String password){
+        boolean status = false;
+        try {
+            Connection cont = DataBasConnection.getPostgresConnection();
+            PreparedStatement statement = cont.prepareStatement("select * from product where email=? and password=?");
+            statement.setString(1, email);
+            statement.setString(2, password);
+
+            ResultSet set = statement.executeQuery();
+            cont.close();
+
+        } catch (Exception auth) {
+            System.out.println(auth);
+
+        }
+
+        return status;
+    }
+
+    public static int deleteProduct(int id){
+        int status = 0;
+        try {
+            Connection con = DataBasConnection.getPostgresConnection();
+            PreparedStatement prep = con.prepareStatement("delete * from product wher id=?");
+            prep.setInt(1, id);
+            status = prep.executeUpdate();
+            con.close();
+
+        } catch (Exception deletingOfProduct) {
+            System.out.println(deletingOfProduct);
+
+        }
+
+        return status;
     }
 }
