@@ -11,14 +11,13 @@ public class IssuedProductBean {
     public IssuedProductBean(){
     }
 
-    public IssuedProductBean(String bookCode, String studentId, String studentName, String returnStatus,
-                             long studentMobile, Date issuedDate) {
+    public IssuedProductBean(String bookCode, String studentId, String studentName, long studentMobile) {
         this.bookCode = bookCode;
         this.studentId = studentId;
         this.studentName = studentName;
-        this.returnStatus = returnStatus;
+       // this.returnStatus = returnStatus;
         this.studentMobile = studentMobile;
-        this.issuedDate = issuedDate;
+        //this.issuedDate = issuedDate;
     }
 
     public Date getIssuedDate() {

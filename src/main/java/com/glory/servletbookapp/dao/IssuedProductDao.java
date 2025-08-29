@@ -5,7 +5,6 @@ import com.glory.servletbookapp.beans.IssuedProductBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +89,7 @@ public class IssuedProductDao {
         return false;
     }
 
-    public static List<IssuedProductBean>  viewIssuedProduct(){
+    public static List<IssuedProductBean>  viewIssuedProducts(){
         List<IssuedProductBean> listOfIssuedProduct = new ArrayList<>();
 
         try {

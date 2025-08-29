@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryOfficerDao {
-    private static int saveProduct(LibraryOfficerBean officer){
+    public static int saveProduct(LibraryOfficerBean officer){
         int user2 = 0;
 
         try {
             Connection connected = DataBasConnection.getPostgresConnection();
             PreparedStatement statement = connected.prepareStatement("insert into product(id, name, email, password, mobile) values (?,?,?,?,?,?)");
-            statement.setString(1, "1");
-            statement.setString(2, officer.getName());
-            statement.setString(3, officer.getEmail());
-            statement.setString(4, officer.getPassword());
-            statement.setLong(5, officer.getMobile());
+            statement.setInt(1, 1);
+            statement.setString(2, officer.getLibrarianName());
+            statement.setString(3, officer.getLibrarianEmail());
+            statement.setString(4, officer.getLibrarianPassword());
+            statement.setLong(5, officer.getLibrarianMobileNumber());
 
             user2 = statement.executeUpdate();
             connected.close();
@@ -32,17 +32,17 @@ public class LibraryOfficerDao {
         return user2;
     }
 
-    private static int updateProduct(LibraryOfficerBean lab){
+    public static int updateProduct(LibraryOfficerBean lab){
         int step = 0;
         try {
             Connection connecting = DataBasConnection.getPostgresConnection();
             PreparedStatement preparedStatement = connecting.prepareStatement("update product set name=?,email=?,password=?,mobile=?,," +
                     "where id=?");
-            preparedStatement.setString(1, lab.getName());
-            preparedStatement.setString(2, lab.getPassword());
-            preparedStatement.setString(3, lab.getEmail());
-            preparedStatement.setLong(4, lab.getMobile());
-            preparedStatement.setInt(5,lab.getId());
+            preparedStatement.setString(1, lab.getLibrarianName());
+            preparedStatement.setString(2, lab.getLibrarianPassword());
+            preparedStatement.setString(3, lab.getLibrarianEmail());
+            preparedStatement.setLong(4, lab.getLibrarianMobileNumber());
+            preparedStatement.setInt(5,lab.getLibrarianId());
 
 
         } catch (Exception updatingProduct) {
@@ -53,7 +53,9 @@ public class LibraryOfficerDao {
         return step;
     }
 
-    private static List<LibraryOfficerBean> viewListOfProduct(){
+
+
+    public static List<LibraryOfficerBean> viewLibrarian(){
         List<LibraryOfficerBean> list = new ArrayList<>();
         try {
             Connection conning = DataBasConnection.getPostgresConnection();
@@ -62,17 +64,18 @@ public class LibraryOfficerDao {
 
 
             while (setting.next()){
-                LibraryOfficerBean librarian = new LibraryOfficerBean();
+                LibraryOfficerBean librarian1 = new LibraryOfficerBean();
 
-                librarian.setId(setting.getInt("id"));
-                librarian.setName(setting.getString("name"));
-                librarian.setEmail(setting.getString("email"));
-                librarian.setPassword(setting.getString("password"));
-                librarian.setMobile(setting.getLong("mobile"));
+                librarian1.setLibrarianId(setting.getInt("id"));
+                librarian1.setLibrarianName(setting.getString("name"));
+                librarian1.setLibrarianEmail(setting.getString("email"));
+                librarian1.setLibrarianPassword(setting.getString("password"));
+                librarian1.setLibrarianMobileNumber(setting.getLong("mobile"));
 
-                list.add(librarian);
+                list.add(librarian1);
 
             }
+            conning.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -88,11 +91,11 @@ public class LibraryOfficerDao {
 
             ResultSet setStatement = preparedStatement.executeQuery();
             if (setStatement.next()){
-                librarian.setId(setStatement.getInt(1));
-                librarian.setName(setStatement.getString(2));
-                librarian.setEmail(setStatement.getString(3));
-                librarian.setMobile(setStatement.getLong(4));
-                librarian.setPassword(setStatement.getString("password"));
+                librarian.setLibrarianId(setStatement.getInt(1));
+                librarian.setLibrarianName(setStatement.getString(2));
+                librarian.setLibrarianEmail(setStatement.getString(3));
+                librarian.setLibrarianMobileNumber(setStatement.getLong(4));
+                librarian.setLibrarianPassword(setStatement.getString("password"));
 
             }
 

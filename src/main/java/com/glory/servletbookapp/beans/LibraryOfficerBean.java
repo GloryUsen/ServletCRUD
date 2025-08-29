@@ -1,61 +1,60 @@
 package com.glory.servletbookapp.beans;
 
 public class LibraryOfficerBean {
-    private int id;
-    private String name;
-    private String email;
-    private String password;
-    private long mobile;
+    private int LibrarianId;
+    private String LibrarianName;
+    private String LibrarianEmail;
+    private String LibrarianPassword;
+    private long LibrarianMobileNumber;
 
     public LibraryOfficerBean(){
     }
 
-    public LibraryOfficerBean(int id, String name, String email, String password, Long mobile) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.mobile = mobile;
+    public LibraryOfficerBean(int librarianId, String librarianName, String librarianEmail, String librarianPassword, long librarianMobileNumber) {
+        LibrarianId = librarianId;
+        LibrarianName = librarianName;
+        LibrarianEmail = librarianEmail;
+        LibrarianPassword = librarianPassword;
+        LibrarianMobileNumber = librarianMobileNumber;
     }
 
-    public int getId() {
-        return id;
+    public int getLibrarianId() {
+        return LibrarianId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLibrarianId(int librarianId) {
+        LibrarianId = librarianId;
     }
 
-    public String getName() {
-        return name;
+    public String getLibrarianName() {
+        return LibrarianName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLibrarianName(String librarianName) {
+        LibrarianName = librarianName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLibrarianEmail() {
+        return LibrarianEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLibrarianEmail(String librarianEmail) {
+        LibrarianEmail = librarianEmail;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLibrarianPassword() {
+        return LibrarianPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLibrarianPassword(String librarianPassword) {
+        LibrarianPassword = librarianPassword;
     }
 
-    public Long getMobile() {
-        return mobile;
-
+    public long getLibrarianMobileNumber() {
+        return LibrarianMobileNumber;
     }
 
-    public void setMobile(Long mobile) {
-        this.mobile = mobile;
+    public void setLibrarianMobileNumber(long librarianMobileNumber) {
+        LibrarianMobileNumber = librarianMobileNumber;
     }
 }
